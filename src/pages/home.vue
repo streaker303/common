@@ -1,6 +1,6 @@
 <template>
 	<div class="home">
-		<div class="ub top-bar">
+		<!--<div class="ub top-bar">
 			<div class="ub ub-ac logo-title" style="height:78px;">
 				<img style="margin-left: 20px;" src="../assets/img/new_logo.png" alt="" />
 			</div>
@@ -25,7 +25,7 @@
 								</a>
 							</div>
 					    </div>
-					    <!-- 如果需要导航按钮 -->
+					    &lt;!&ndash; 如果需要导航按钮 &ndash;&gt;
 						<div v-if="permissions.length>1" class="swiper-button-prev"></div>
 						<div v-if="permissions.length>1" class="swiper-button-next"></div>
 					</div>
@@ -39,16 +39,17 @@
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="nav-tips" style="text-align: center;">
+		</div>-->
+		<!--<div class="nav-tips" style="text-align: center;">
 			<div class="tips-box" v-show="curActive" @mouseenter="enterCur" @mouseleave="leaveCur">
 			<i></i>
 			<i></i>
 			<i></i>
 				<a v-for="(item,index) in tipsData" :key="index" :class="{'last':index==tipsData.length-1}" href="javascript:;" @click="goin(item)">{{item.resourceName}}</a>
 			</div>
-		</div>
-		<div class="left-bar">
+		</div>-->
+        <TopNav :permissions="permissions" :userInfo="userInfo"></TopNav>
+		<!--<div class="left-bar">
 			<div class="ub ub-ac ub-pc ub-ver time-box">
 				<div>{{hourMinute}}</div>
 				<div>{{dateTime}}</div>
@@ -62,7 +63,8 @@
 					<NavMenu :navMenus="menuData"></NavMenu>
 				</el-menu>
 			</div>
-		</div>
+		</div>-->
+        <LeftBar :time="timeNum" :navMenus="menuData" :default-opens="defaultOpens"></LeftBar>
 		<div class="right-content">
 			<router-view class="second-view"></router-view>
 		</div>
@@ -80,20 +82,26 @@
 		getNewSysMenus,
 	} from '../server/users.js'
 	import md5 from '../assets/js/md5.js'
-	import NavMenu from "../components/NavMenu.vue";
+
+	import LeftBar from "../../modules/LeftBar";
+	import TopNav from "../../modules/TopNav";
+
 	export default {
 		name: 'home',
 		components: {
-			NavMenu: NavMenu
+            LeftBar: LeftBar,
+            TopNav: TopNav
 		},
 		data() {
 			return {
 				tipsData:[],
 				curActive:false,
 				timer: null,
-				week: '',
-				hourMinute: '',
-				dateTime: '',
+                timeNum: {
+                    week: '',
+                    hourMinute: '',
+                    dateTime: ''
+                },
 				sysId: '',
 				logoName: '',
 				menu: [],
@@ -204,9 +212,9 @@
 				if(sec < 10) sec = "0" + sec;
 				if(MS < 100) MS = "0" + MS;
 				var arr_week = new Array("星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六");
-				this.week = arr_week[day];
-				this.hourMinute = hour + ":" + minu;
-				this.dateTime = year + "-" + month + "-" + date;
+				this.timeNum.week = arr_week[day];
+				this.timeNum.hourMinute = hour + ":" + minu;
+				this.timeNum.dateTime = year + "-" + month + "-" + date;
 				//设置得到当前日期的函数的执行间隔时间，每1000毫秒刷新一次。
 				this.timer = setTimeout(() => {
 					this.timeStr+=1000;
