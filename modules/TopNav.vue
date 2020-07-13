@@ -35,7 +35,8 @@
                         <div style="font-size:14px;"><i style="font-size:16px;margin-right:10px;" class="el-icon-s-custom"></i>您好，{{userInfo.cnName}}</div>
                     </div>
                     <div class="home">
-                        <router-link style="color:#FFFFFF;font-size:14px;" to="/entrance" class="link-home" title="首页"><i style="font-size:16px;margin-right: 10px;" class="el-icon-s-home bell"></i>返 回</router-link>
+                        <router-link v-if="baseInfo" style="color:#ffffff;font-size:14px;" to="/entrance" class="link-home" title="首页"><i style="font-size:16px;margin-right: 10px;" class="el-icon-s-home bell"></i>返 回</router-link>
+                        <a v-else style="color:#FFFFFF;font-size:14px;" :href="baseInfo+'#/entrance'" class="link-home" title="首页"><i style="font-size:16px;margin-right: 10px;" class="el-icon-s-home bell"></i>返 回</a>
                     </div>
                 </div>
             </div>
@@ -62,7 +63,7 @@ export default {
             curActive:false,
         }
     },
-    props: ['userInfo', 'permissions', 'userInfo'],
+    props: ['userInfo', 'permissions', 'baseInfo'],
     methods: {
         enter(item){
             clearTimeout(this.timer1);
