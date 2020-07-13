@@ -119,6 +119,7 @@ export default {
         >>>.el-submenu{
             background: url(../src/assets/img/menu_bg.png) no-repeat;
             background-size: 100% 44px;
+            margin-bottom: 14px;
             .el-submenu__title{
                 height: 44px;
                 line-height: 44px;
@@ -161,5 +162,12 @@ export default {
                 }
             }
         }
+        >>>.el-submenu.is-active .el-submenu__title{
+		background: url(../src/assets/img/menu_active_bg.png) center no-repeat;
+		background-size: 100% 100%;
+            span {
+                color: #78ddff;
+            }
+	    }
     }
 </style>
