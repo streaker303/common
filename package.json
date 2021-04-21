@@ -22,7 +22,7 @@
     "loadsh": "^0.0.4",
     "promise-polyfill": "^8.1.0",
     "quill": "^1.3.6",
-    "sockjs": "^0.3.19",
+    "sockjs": "^0.3.20",
     "sockjs-client": "^1.3.0",
     "stompjs": "^2.3.3",
     "vue": "^2.5.2",
